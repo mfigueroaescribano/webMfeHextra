@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
+
+.content {
+    font-family: "Inter", sans-serif;
+  }
+
+.content code:not(.code-block code) {
+    color: #3056d5;
+  }
+
+/* :root {
+    --primary-hue: 100deg;
+    --primary-saturation: 90%;
+  } */
