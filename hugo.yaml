@@ -47,7 +47,7 @@ params:
     displayTitle: false
     displayLogo: true
     logo: 
-      path: images/logoBlanco.png
+      path: static/images/logoBlanco.png
       width: 80
 
   footer:
