@@ -44,8 +44,11 @@ menu:
 
 params:
   navbar:
-    displayTitle: true
-    displayLogo: false
+    displayTitle: false
+    displayLogo: true
+    logo: 
+      path: images/logoBlanco.png
+      width: 80
 
   footer:
     displayCopyright: false

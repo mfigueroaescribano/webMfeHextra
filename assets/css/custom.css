@@ -5,10 +5,11 @@
   }
 
 .content code:not(.code-block code) {
-    color: #3056d5;
+    color: #028c5a;
   }
 
 /* :root {
-    --primary-hue: 100deg;
-    --primary-saturation: 90%;
+    --primary-hue: 158deg;
+    --primary-saturation: 97%;
+    --primary-lightness: 28%;
   } */
