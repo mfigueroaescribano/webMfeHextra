@@ -24,7 +24,7 @@ Con la ejecución del comando `apt install john` instalamos la herramienta. Una 
 
 Sobre un contenedor en Proxmox con Debian12 nos arroja los siguientes resultados:
 
-![john --test](200.png)
+![john --test](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2017.03.55.png&preferRawImage=0)
 
 ### Opciones de ataque por diccionario
 
@@ -52,7 +52,7 @@ iesgn
 
 A continuación, ejecutaremos John the Ripper para cracker la contraseña del fichero `/etc/shadow` tomando como diccionario el fichero `diccpassword.txt`. Lo hacemos con el comando `john --wordlist=diccpassword.txt --format=crypt /etc/shadow`. Con el parámetro `--format` indicamos el formato del hash. Indicamos `crypt` si lo desconocemos.
 
-![John con /etc/shadow por ataque de diccionarios](.attachments.771/Captura%20de%20pantalla%202023-10-16%20a%20las%2019.39.06%20%282%29.png)
+![John con /etc/shadow por ataque de diccionarios](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2019.39.06%20(2).png&preferRawImage=0)
 
 Como vemos en la captura anterior, la clave del usuario *miguel* era *iesgn*, y ha tardado prácticamente ni 1 segundo, ya que el diccionario de claves solo tenía 5 líneas y entre ellas estaba la correcta.
 
@@ -79,11 +79,11 @@ Además, deberemos descargar también la herramienta pwdump8, desde el siguiente
 
 Ejecutamos la herramienta pwdump8 y redirijimos su salida al fichero `usuarioshash.txt`. Observamos el archivo que se ha generado:
 
-![](.attachments.771/Captura%20de%20pantalla%202023-10-18%20a%20las%2016.30.45.png)
+![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2017.03.55.png&preferRawImage=0)
 
 Ahora pasaremos ese fichero generado por John the Ripper. El comando es similar a Linux. Nos da esta respuesta:
 
-![](.attachments.771/Captura%20de%20pantalla%202023-10-18%20a%20las%2016.42.40%20%282%29.png)
+![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2017.03.55.png&preferRawImage=0)
 
 Ha descifrado correctamente las contraseñas de *alex* y *fran*, que realmente son los únicos usuarios que tienen contraseña ya que no le hemos configurado contraseña al usuario *miguel*. Este proceso ha usado las wordlist por defecto que hemos descargado con la herramienta.
 
@@ -99,15 +99,13 @@ Con el comando `unshadow /etc/passwd /etc/shadow > combinado.txt` combinamos los
 
 Pasamos el archivo por John para que comience el ataque por fuerza bruta:
 
-![](.attachments.771/Captura%20de%20pantalla%202023-10-18%20a%20las%2017.45.18.png)
+![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-18%20a%20las%2017.45.18.png&preferRawImage=0)
 
 En primer lugar vemos como la contraseña del usuario *alex* la ha descifrado utilizando el método de ataque por diccionario. Pero ahora está intentando descifrar el resto de contraseñas por fuerza bruta. Vemos como la máquina está empleando toda la potencia disponible de procesamiento en sucesivos intentos de cracker las claves:
 
-![](.attachments.771/Captura%20de%20pantalla%202023-10-18%20a%20las%2017.47.39.png)
+![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-18%20a%20las%2017.47.39.png&preferRawImage=0)
 
-Después de bastante tiempo intentando el ataque (*TIEMPO EMPLEADO*), conseguimos las siguientes contraseñas descifradas:
-
-# *CAPTURA*
+Obviamente estábamos forzando con la segunda contraseña a probar todas las combinaciones posibles, sin ninguna ayuda por lo que se demorará bastante en conseguir un resultado, algo que no sería viable.
 
 Como hemos visto y comprobado, para prevenir de los ataques de contraseñas por fuerza bruta debemos configurar contraseñas largas, con letras, números y símbolos cuando sea posible, así como habilitar la autentificación de doble factor cuando sea posible.
 

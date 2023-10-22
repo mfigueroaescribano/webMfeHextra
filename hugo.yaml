@@ -45,7 +45,7 @@ menu:
 params:
   navbar:
     displayTitle: false
-    displayLogo: true
+    displayLogo: false
     logo: 
       path: static/images/logoBlanco.png
       width: 80
