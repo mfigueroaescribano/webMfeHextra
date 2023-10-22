@@ -24,7 +24,7 @@ Con la ejecución del comando `apt install john` instalamos la herramienta. Una 
 
 Sobre un contenedor en Proxmox con Debian12 nos arroja los siguientes resultados:
 
-![john --test](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2017.03.55.png&preferRawImage=0)
+![john --test](images/200.png)
 
 ### Opciones de ataque por diccionario
 
@@ -52,7 +52,7 @@ iesgn
 
 A continuación, ejecutaremos John the Ripper para cracker la contraseña del fichero `/etc/shadow` tomando como diccionario el fichero `diccpassword.txt`. Lo hacemos con el comando `john --wordlist=diccpassword.txt --format=crypt /etc/shadow`. Con el parámetro `--format` indicamos el formato del hash. Indicamos `crypt` si lo desconocemos.
 
-![John con /etc/shadow por ataque de diccionarios](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2019.39.06%20(2).png&preferRawImage=0)
+![John con /etc/shadow por ataque de diccionarios](images/2001.png)
 
 Como vemos en la captura anterior, la clave del usuario *miguel* era *iesgn*, y ha tardado prácticamente ni 1 segundo, ya que el diccionario de claves solo tenía 5 líneas y entre ellas estaba la correcta.
 
@@ -79,11 +79,11 @@ Además, deberemos descargar también la herramienta pwdump8, desde el siguiente
 
 Ejecutamos la herramienta pwdump8 y redirijimos su salida al fichero `usuarioshash.txt`. Observamos el archivo que se ha generado:
 
-![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2017.03.55.png&preferRawImage=0)
+![](images/2002.png)
 
 Ahora pasaremos ese fichero generado por John the Ripper. El comando es similar a Linux. Nos da esta respuesta:
 
-![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-16%20a%20las%2017.03.55.png&preferRawImage=0)
+![](images/2003.png)
 
 Ha descifrado correctamente las contraseñas de *alex* y *fran*, que realmente son los únicos usuarios que tienen contraseña ya que no le hemos configurado contraseña al usuario *miguel*. Este proceso ha usado las wordlist por defecto que hemos descargado con la herramienta.
 
@@ -99,11 +99,11 @@ Con el comando `unshadow /etc/passwd /etc/shadow > combinado.txt` combinamos los
 
 Pasamos el archivo por John para que comience el ataque por fuerza bruta:
 
-![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-18%20a%20las%2017.45.18.png&preferRawImage=0)
+![](images/2004.png)
 
 En primer lugar vemos como la contraseña del usuario *alex* la ha descifrado utilizando el método de ataque por diccionario. Pero ahora está intentando descifrar el resto de contraseñas por fuerza bruta. Vemos como la máquina está empleando toda la potencia disponible de procesamiento en sucesivos intentos de cracker las claves:
 
-![](https://nube.mfecloud.es/index.php/apps/text/image?documentId=771&sessionId=299&sessionToken=3T%2BQHAnzcfbmbaJaXB%2BDgJ7j9UtGmmYUgFZkG3NoyheiuyS8MBFdnkBKu%2Fo8hPC0&imageFileName=Captura%20de%20pantalla%202023-10-18%20a%20las%2017.47.39.png&preferRawImage=0)
+![](images/2005.png)
 
 Obviamente estábamos forzando con la segunda contraseña a probar todas las combinaciones posibles, sin ninguna ayuda por lo que se demorará bastante en conseguir un resultado, algo que no sería viable.
 
