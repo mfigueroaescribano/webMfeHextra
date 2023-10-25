@@ -14,5 +14,6 @@ Soy Miguel, estudiante del grado superior de Administración de Sistemas Inform�
 
 [Email 📬](mailto:miguel@mfecloud.es)
 
-### Github
+### GitHub
+Mi top lenguajes en Gitbub 👇
 [![Mi top lenguajes en Github](https://github-readme-stats.vercel.app/api/top-langs/?username=mfigueroaescribano&layout=compact)](https://github.com/anuraghazra/github-readme-stats)

@@ -1,3 +1,7 @@
+---
+title: Herramientas de comprobación de contraseñas
+type: docs
+---
 # Herramienta de comprobación de fortaleza de contraseñas
 
 ## *John the Ripper*

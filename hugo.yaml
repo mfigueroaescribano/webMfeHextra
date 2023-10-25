@@ -53,5 +53,5 @@ params:
 
   editURL:
     enable: true
-    base: "https://web.mfecloud.es/"
+    base: "https://github.com/mfigueroaescribano/webMfeHextra/"
 
