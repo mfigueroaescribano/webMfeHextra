@@ -19,7 +19,7 @@ Creamos la base de datos, y un usuario para este taller, con nombre taller1php a
 </VirtualHost>
 ```
 
-## Fichero `Config.php``
+## Fichero `Config.php`
 
 ```
 <?php
@@ -36,6 +36,6 @@ const charset = "charset=utf8";
 ![Captura de acceso a la aplicación, después del login](../images/capturaapp.png)
 
 ## Fichero modificado para límite de memoria
-`/etc/php/8.2/cli/php.ini`!
+`/etc/php/8.2/cli/php.ini`
 
-[Memory limit PHP](../images/phplimit.png)
+![Memory limit PHP](../images/phplimit.png)
