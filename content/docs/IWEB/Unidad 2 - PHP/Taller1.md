@@ -33,9 +33,9 @@ const charset = "charset=utf8";
 ```
 
 ## Acceso a la aplicación
-![Captura de acceso a la aplicación, después del login](images/capturaapp.png)
+![Captura de acceso a la aplicación, después del login](../images/capturaapp.png)
 
 ## Fichero modificado para límite de memoria
 `/etc/php/8.2/cli/php.ini`
 
-![Memory limit PHP](images/phplimit.png)
+![Memory limit PHP](../images/phplimit.png)
