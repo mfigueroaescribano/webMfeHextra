@@ -1,0 +1,75 @@
+---
+title: P3 - Política de seguridad
+type: docs
+---
+# Práctica 3: política de seguridad
+
+## Descripción de la empresa
+
+Para la realización de esta práctica nos centraremos en una empresa de logística integral nacional e internacional. Esta empresa tiene sedes en España, Portugal e Italia.
+
+Su sede central está en Sevilla, desde donde se coordina al resto. Es en Sevilla donde tiene su CPD. El funcionamiento de la empresa en el aspecto informático se basa de la siguiente forma:
+
+- **Email, chats y archivos compartidos:** se usa el servicio externo Microsoft 365. Mediante Exchange Online (servidor de correo), Microsoft Teams (chat y reuniones de voz / video) y OneDrive + SharePoint (almacenamiento y compartición de archivos) esta empresa tiene resuelto este apartado de forma completamente externalizada, es decir, no aloja estos servicios en su CPD.
+- **Software ERP:** este software utilizan todos los departamentos de la empresa, compuestos por contabilidad, tráfico, comercial, aduanas e informático. En este programa se gestiona toda la operativa de la empresa, así como la coordinación entre los departamentos. Este software es una aplicación web, que también está externalizada y alojada por la empresa propietaria de este software.
+- **Entorno de escritorio de los trabajadores:** se usa un modelo mixto. Por un lado, hay un número de trabajadores que tienen un entorno de trabajo local, es decir, cada uno tiene un portátil y su área de trabajo está en una cuenta local en dicho equipo. 
+
+  Por otro lado, tenemos a una de las sedes de España (la que está en Cádiz) que por cuestiones de certificaciones debe trabajar sobre un escritorio virtualizado en un servidor, con lo que ello conlleva. El servidor que aloja estos escritorios virtuales de los trabajadores funciona con Proxmox, donde cada trabajador tiene su máquina virtual. Este servidor se aloja en el CPD central de la empresa en Sevilla, por lo que los trabajadores de Cádiz se conectan usando una VPN. De estas máquinas virtuales de los trabajadores se generan diariamente dos copias de seguridad: una en otro disco duro dentro del servidor, y otra en un servidor de almacenamiento distinto también presente en el CPD.
+
+## Identificación y valoración de activos
+
+Para la definición de los activos de una empresa se suelen considerar los siguientes apartados: hardware, software, datos, comunicaciones, instalaciones y servicios.
+
+### Hardware
+
+En el inventario hardware del CPD de la empresa ubicado en la central de Sevilla nos encontramos los siguientes elementos:
+
+- **UPS**: dispositivo electrónico que proporciona energía eléctrica continua a equipos electrónicos cuando la fuente de alimentación principal falla. Suele tener también la función adicional de protección contra sobretensiones, para proteger los dispositivos contra picos de voltaje.
+- **Servidor de almacenamiento:** existen dos servidores almacenamiento distintos, ambos con las mismas características. Lleva cada uno de ellos dos discos con RAID 0, priorizando la redundancia de los datos antes que la disponibilidad o rápidez de ellos. En uno de estos servidores se encuentran los documentos antiguos de la empresa, y el otro se utiliza para archivar correos antiguos que los usuarios ya no necesitan y se almacenan por si en algún caso excepcional fuera necesario rescatarlos. También se almacenan en este último una copia de las máquinas virtuales del servidor de virtualización.
+- **Servidor de virtualización:** descrito en el apartado del funcionamiento de la empresa, virtualiza los escritorios de los trabajadores que trabajan sobre este modelo. Usa el entorno de virtualización Proxmox.
+- **Switches:** 3 switches de red, todos gestionables. Uno de ellos se usa como cabecera donde van conectado todo lo que no son puestos de trabajo de los usuarios. Los otros dos van conectados usando trunking de dos bocas cada uno al de cabecera, y son los que reparten la red cableada a todos los puestos de trabajo de la oficina.
+- **Router:** router central con balanceo de carga con múltiples conexiones WAN, conectado a diferentes ISP, en concreto de Vodafone y Movistar. Nos proporciona redundancia y tolerancia a fallos: si una conexión falla, el router puede reconfigurarse para dirigir el tráfico a través de las conexiones restantes, manteniendo así la continuidad del servicio.
+- **AP:** varios puntos de acceso WiFi repartidos por la oficina con tecnología POE para crear una red inalámbrica con la que los usuarios se pueden conectar con sus dispositivos móviles (portátiles, móviles o tablets) y que también usan los clientes.
+- **Impresoras:** varias impresoras repartidas por toda la oficina que utilizan los usuarios para imprimir documentación, aunque sólo estrictamente la que se requiere en formato papel para proveedores o clientes, nunca para uso interno ya que está todo en el ERP.
+- **Equipos personales:** normalmente portátiles que tienen los usuarios de la empresa, que usan para el trabajo diario. 
+- **Dispositivos móviles:** teléfonos moviles que poseen usuarios para su uso en la empresa. Se les entrega un teléfono móvil junto a una tarjeta SIM que posee un número de teléfono y una extensión interna. Además, esta línea de teléfono posee tarifa de datos ilimitados a la máxima velocidad posible según la cobertura.
+
+### Software
+
+En cuanto al software que se usa diariamente por los trabajadores de la empresa, encontramos:
+
+- **DEIWORLD:** software de gestión empresarial (ERP) y CRM de transitario, aduanas y logística. Es un sistema integral de software que ayuda a las organizaciones a gestionar y coordinar sus procesos de negocio de manera eficiente. Un ERP integra varias funciones de una empresa en un único sistema unificado, con el objetivo de mejorar la visibilidad, la eficiencia y la toma de decisiones.
+
+  Posee tres módulos: uno de transitario, otro de aduanas y otro de contabilidad, que van usando según el departamento en el que trabaje el usuario de la empresa.
+
+  Tiene también integración con otras tres plataformas que se usan en el día a día para la gestión por el departamento de tráfico.
+
+  Es un sistema modular, escalable, altamente parametrizable y que permite la cohesión entre todos sus módulos. Multidelegacíón, multiempresa, multidivisa y multiidioma. Su usabilidad es la de software en la nube, es decir, acceder desde cualquier dispositivo en cualquier lugar. 
+- **Suite de Microsoft365:** la empresa otorga a cada usuario una licencia de Microsft365 Business Standard, que incluye el uso de toda la suite ofimática de Microsoft (Word, Excel, PowerPoint, ...), Microsoft Teams, OneDrive, SharePoint y Exchange Online principalmente. Esta licencia va asignada a su correo corporativo.
+- **Proxmox VE:** utilizado por las personas que trabajan desde la sede de Cádiz, es es una plataforma de virtualización de código abierto que combina dos tecnologías principales: virtualización de máquinas (VMs) y contenedores. Proxmox VE proporciona una solución integral para la virtualización de servidores y la gestión de clústeres, permitiendo a los usuarios crear y administrar entornos virtualizados de manera eficiente. Aquí las características generales:
+  - **Virtualización de Máquinas (VMs):** Permite la creación y gestión de máquinas virtuales basadas en tecnologías de virtualización como KVM (Kernel-based Virtual Machine) para sistemas Linux y QEMU (Quick Emulator).
+  - **Contenedores:** ofrece soporte para contenedores basados en la tecnología de contenedorización LXC (Linux Containers). Los contenedores son una forma más liviana de virtualización que comparten el mismo kernel del sistema operativo anfitrión.
+  - **Gestión Centralizada:** proporciona una interfaz web de administración centralizada que permite a los usuarios gestionar y monitorear tanto las VMs como los contenedores desde un único panel.
+  - **Almacenamiento Compartido:** facilita la configuración de almacenamiento compartido para las máquinas virtuales y los contenedores a través de tecnologías como Ceph, ZFS y NFS.
+  - **Gestión de Redes:** ofrece herramientas para gestionar la configuración de redes, incluyendo la creación de redes virtuales, configuración de interfaces de red y firewalls.
+  - **Clustering:** permite la creación de clústeres para distribuir la carga de trabajo y proporcionar redundancia. La gestión de clústeres facilita la administración de recursos y la alta disponibilidad.
+  - **Herramientas de Copia de Seguridad:** incluye funciones de copia de seguridad y restauración para proteger los datos y configuraciones de las máquinas virtuales y contenedores.
+  - **Soporte para Migración en Vivo:** permite la migración en vivo de máquinas virtuales y contenedores entre nodos del clúster sin interrupción del servicio.
+  - **Compatibilidad con Tecnologías de Virtualización:** utiliza tecnologías estándar de virtualización de Linux, como KVM y LXC, lo que lo hace compatible con una variedad de sistemas operativos invitados.
+
+### Datos
+
+Podemos encontrar los datos valiosos de la empresa en 3 medios:
+
+- **Correos electrónicos:** es desde donde se gestiona la operativa habitualmente de comunicación entre la empresa y sus clientes y proveedores, así como gestiones entre los mismos departamentos de la empresa. 
+- **Software ERP:** aquí se encuentran los datos de los clientes y proveedores, así como toda la organización interna de la empresa. Toda la parte de contabilidad, operativa de tráfico, ofertas, facturas, contratos, expedientes, ...
+- **SharePoint:** aquí es donde se almacenan los documentos internos de la empresa de cada departamento, o los datos privados de cada usuario. Existe un historial de versiones ya que el uso de archivos es compartido.
+
+### Comunicaciones
+
+Las comunicaciones de la empresa entre sus usuarios, y de la empresa con los clientes o proveedores se realiza de las siguientes formas:
+
+- **Microsoft Teams:** es la forma habitual de comunicación entre los distintos usuarios de la empresa, ya sea de forma escrita por los chats o por reuniones de voz y video. Se usa también para mantener reuniones o contacto más directo con clientes y proveedores.
+- **Llamadas telefónicas:** se usa como forma de contacto más tradicional, así como para resolver incidencias de forma más rápida, entre los usuarios de la empresa y también para contactar con clientes y proveedores. De todas formas, normalmente las decisiones importantes quedan escritas habitualmente por correo electrónico, y de forma menos habitual por Teams. 
+- **Correo electrónico:** es la forma más extendida para contactar con clientes y proveedores, además de usarse también para el seguimiento de los expedientes asignados a cada usuario de la empresa. También se realizan las comunicaciones formales internas de la empresa por este medio.
+- **WhatsApp Business o Wechat**: forma de comunicación más informal entre los usuarios de la empresa, o incluso con clientes o proveedores. No es la más extendida, aunque si da confianza por ejemplo a ciertos clientes o proveedores que no usan Microsoft Teams en su empresa.
