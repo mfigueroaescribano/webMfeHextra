@@ -19,6 +19,7 @@ markup:
 menu:
   main:
     - name: Docs
+      identifier: documentation
       pageRef: /docs
       weight: 1
     - name: Sobre mí
@@ -40,6 +41,8 @@ menu:
         icon: x-twitter
 
 params:
+  theme:
+    default: system
   navbar:
     displayTitle: true
     displayLogo: false
@@ -56,4 +59,6 @@ params:
     base: "https://github.com/mfigueroaescribano/webMfeHextra/"
   
   enableInlineShortcodes: true
+
+defaultContentLanguage: es
 
