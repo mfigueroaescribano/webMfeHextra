@@ -10,8 +10,9 @@
 /* .content code:not(.code-block code) {
     color: #c97c2e;
   }
+*/
 
 :root {
-    --primary-hue: 100deg;
-    --primary-saturation: 90%;
-  } */
+    --primary-hue: 38deg;
+    --primary-saturation: 92%;
+  } 
