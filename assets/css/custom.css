@@ -8,11 +8,11 @@
   }
 
 .content code:not(.code-block code) {
-    color: #004CA3;
+    color: #F5A518;
   }
 
 
 :root {
-    --primary-hue: 38deg;
-    --primary-saturation: 92%;
+    --primary-hue: 212deg;
+    --primary-saturation: 100%;
   } 
