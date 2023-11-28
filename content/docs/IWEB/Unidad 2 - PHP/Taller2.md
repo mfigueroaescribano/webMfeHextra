@@ -4,7 +4,7 @@ type: docs
 ---
 
 ## Configuración fpm-php
-Para deshabilitar el módulo de apache2 que permite la ejecución de PHP ejecutamos el comando `a2dismod php8.2`, y reiniciamos el servicio de apache2. Tras esto, instalamos `php8.3-fpm`.
+Para deshabilitar el módulo de apache2 que permite la ejecución de PHP ejecutamos el comando `a2dismod php8.2`, y reiniciamos el servicio de apache2. Tras esto, instalamos `php8.2-fpm`.
 
 Comprobamos que están corriendo procesos de php-fpm con el comando `ps aux | grep php-fpm`:
 
