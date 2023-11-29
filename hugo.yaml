@@ -25,6 +25,9 @@ menu:
     - name: Sobre mí
       pageRef: /about
       weight: 2
+    - name: Links
+      pageRef: /links
+      weight: 3
     - name: Buscar
       weight: 4
       params:
