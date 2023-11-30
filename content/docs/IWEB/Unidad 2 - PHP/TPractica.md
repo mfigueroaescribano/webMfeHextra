@@ -100,4 +100,42 @@ Tras introducir los datos de creación del usuario de adminsitrador y la conexi�
 ![Finalizada la instalación de Nextcloud](/images/p-6.png)
 
 ## Migración a VPS
-En primer lugar, prepararemos el servidor VPS (de ahora en adelante `cerebelum`) con una pila LEMP. Instalamos los siguientes paquetes: `apt install nginx mariadb-server php php-mysql php8.2-fpm`
+En primer lugar, prepararemos el servidor VPS (de ahora en adelante `cerebelum`) con una pila LEMP. Instalamos los siguientes paquetes: `apt install nginx mariadb-server php php-mysql php-fpm php-xml`
+
+Una vez instalados esos paquetes, exportaremos las bases de datos de nuestro servidor local. Esto lo hacemos con el comando `mysqldump -u root -p drupal > migraciondrupal.sql` como root, y de la misma forma con Nextcloud.
+
+Una vez exportado, con el comando `scp` pasaremos este archivo a `cerebelum`, nuestro servidor VPS. Lo hacemos con el siguiente comando: `scp migraciondrupal.sql miguel@cerebelum.miguelfigueroa.es:/home/miguel`, igual para el archivo de la base de datos con Nextcloud.
+
+Una vez ya en el VPS, accedemos a mariadb y creamos una nueva base de datos con mismo nombre. Entramos en ella y con el comando `source migraciondrupal.sql` importamos toda la información. Crearemos ahora de igual manera que en el servidor local un usuario para cada base de datos, con mismo usuario y contraseña.
+
+Creamos el virtualhost en nginx. Importante descomentar las siguientes líneas:
+```
+location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    #fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+}
+```
+
+Editamos también lo similar a `a2enmod rewrite` de apache, con los siguientes parámetros:
+```
+        location / {
+                try_files $uri $uri/ /index.php?$args;
+                # try_files $uri $uri/ =404;
+        }
+```
+
+Es importante también eliminar los sitios que estén en `sites-enabled` que estén usando el mismo nombre de servidor y puerto.
+
+Una vez configurada la base de datos y el virtual host de Drupal, moveremos la aplicación al VPS de nuevo con el comando `scp`, con la opción `-r`. Comprimiremos las carpetas de la aplicación para ganar tiempo.
+
+Teniendo ya la carpeta de la aplicación en el VPS y colocada en el director `/var/www/html`, nos dirigiremos al fichero `sites/default/setting.php` de Drupal para cambiar la dirección IP de la base de datos, sustituyéndola por `localhost`.
+
+![Alt text](/images/p-7.png)
+
+Aquí observamos la configuración que hicimos en el servidor local. Deberemos establecer el parámetro `'host => 'localhost'`.
+
+Con esto editado, reiniciamos `nginx` y ya tenemos la web de la aplicación Drupal disponible: http://www.miguelfigueroa.es
+
+Repetiríamos el procedimiento con Nextcloud, y lo tenemos funcionando en la siguiente URL: http://cloud.miguelfigueroa.es
+
+## Configuración de HTTPS en el VPS

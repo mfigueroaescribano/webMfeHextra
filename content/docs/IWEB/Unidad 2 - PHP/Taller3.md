@@ -19,7 +19,7 @@ flush privileges;
 ```
 
 ### Configuración de php-fpm
-Desinstalaremos apache2 de la máquina, para evitar posibles conflictos. Nos dirigimos ahora al fichero de configuración de php-fpm `/etc/php/8.2/fpm/php-fpm.conf` y nos aseguramos que tenemos todos los parámetros correctos (por defecto deberían estarlo), especialmente este: `listen=/run/php/php8.2-fpm.sock`.
+Desinstalaremos apache2 de la máquina, para evitar posibles conflictos. Nos dirigimos ahora al fichero de configuración de php-fpm `/etc/php/8.2/fpm/pool.d/www.conf` y nos aseguramos que tenemos todos los parámetros correctos (por defecto deberían estarlo), especialmente este: `listen=/run/php/php8.2-fpm.sock`.
 
 ## Instalación de Wordpress
 Descargamos ahora Wordpress en su última versión desde la página oficial en la ruta `/var/www/html`, con el comando `wget https://es.wordpress.org/latest-es_ES.zip` y extraemos el archivo descargado con unzip.
