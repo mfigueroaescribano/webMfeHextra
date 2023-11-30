@@ -137,5 +137,3 @@ Aquí observamos la configuración que hicimos en el servidor local. Deberemos e
 Con esto editado, reiniciamos `nginx` y ya tenemos la web de la aplicación Drupal disponible: http://www.miguelfigueroa.es
 
 Repetiríamos el procedimiento con Nextcloud, y lo tenemos funcionando en la siguiente URL: http://cloud.miguelfigueroa.es
-
-## Configuración de HTTPS en el VPS
