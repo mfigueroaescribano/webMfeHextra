@@ -98,3 +98,6 @@ Con esto realizado, accedemos a la URL `www.cloud.miguelfigueroa.org` y ya nos e
 Tras introducir los datos de creación del usuario de adminsitrador y la conexióń de base de datos, finalizamos la instalación:
 
 ![Finalizada la instalación de Nextcloud](/images/p-6.png)
+
+## Migración a VPS
+En primer lugar, prepararemos el servidor VPS (de ahora en adelante `cerebelum`) con una pila LEMP. Instalamos los siguientes paquetes: `apt install nginx mariadb-server php php-mysql php8.2-fpm`
