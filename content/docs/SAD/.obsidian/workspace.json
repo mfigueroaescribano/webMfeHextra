@@ -1,0 +1,168 @@
+{
+  "main": {
+    "id": "f51838d72248f93e",
+    "type": "split",
+    "children": [
+      {
+        "id": "b218d5854f15f41c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3560c2b61c071a27",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "P7.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "805d5eb2a5d98da6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "VPN (Redes privadas virtuales).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0a944317efd5d434",
+    "type": "split",
+    "children": [
+      {
+        "id": "6d20052ab7668656",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "718ec4e9476e0a4a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0fccf7f6f562396d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ad25792fa0af4aeb",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "ab95a862c404d789",
+    "type": "split",
+    "children": [
+      {
+        "id": "1b2495f2490d8ad4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ce4028ac9ed47802",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "VPN (Redes privadas virtuales).md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "bd70d8567c60c2cb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "VPN (Redes privadas virtuales).md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "fe91144901222129",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "54da46aea18251c2",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "VPN (Redes privadas virtuales).md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo canvas": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false
+    }
+  },
+  "active": "805d5eb2a5d98da6",
+  "lastOpenFiles": [
+    "P7.md",
+    "VPN (Redes privadas virtuales).md"
+  ]
+}
