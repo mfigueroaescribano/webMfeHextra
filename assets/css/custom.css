@@ -7,7 +7,7 @@
     font-family: "Inter", sans-serif;
   }
 
-.content code:not(.code-block code) {
+/* .content code:not(.code-block code) {
     color: #47698F;
   }
 
@@ -15,4 +15,4 @@
 :root {
     --primary-hue: 212deg;
     --primary-saturation: 100%;
-  } 
+  }  */
